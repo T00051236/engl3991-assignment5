@@ -414,37 +414,59 @@
         }
         
         .plain-text-button {
-            background: #0066ff;
-            color: #ffffff;
-            border: 2px solid #ffffff;
-            padding: 10px 15px;
-            font-family: 'VT323', monospace;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s;
-            width: 100%;
-        }
-        
-       .plain-text-button:hover {
-            background: #ffffff;
-            color: #0066ff;
-            border-color: #0066ff;
-        }
-        
-        /* Mobile-specific optimizations */
-        @media (max-width: 768px) {
-            .accessibility-controls {
-                position: fixed !important;
-                top: 10px;
-                right: 10px;
-                z-index: 10001;
-                max-width: 200px;
-                padding: 12px;
-            }
-            
-        
+    background: #0066ff;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 10px 15px;
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+.plain-text-button:hover {
+    background: #ffffff;
+    color: #0066ff;
+    border-color: #0066ff;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+    .accessibility-controls {
+        position: fixed !important;
+        top: 10px;
+        right: 10px;
+        z-index: 10001;
+        max-width: 200px;
+        padding: 12px;
+    }
+    
+    .freeze-button,
+    .plain-text-button {
+        font-size: 12px;
+        padding: 8px 12px;
+        margin-bottom: 8px;
+    }
+} /* ADD THIS CLOSING BRACE */
+
+@media (max-width: 480px) {
+    .accessibility-controls {
+        top: 5px;
+        right: 5px;
+        max-width: 150px;
+        padding: 8px;
+    }
+    
+    .freeze-button,
+    .plain-text-button {
+        font-size: 10px;
+        padding: 6px 8px;
+    }
+} /* ADD THIS CLOSING BRACE */
+
         .frozen * {
             animation: none !important;
             transition: none !important;
