@@ -17,70 +17,6 @@
             overflow-x: hidden;
         }
         
-        .assignment-banner {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, #000000 0%, #1a0033 50%, #000000 100%);
-            color: #00ff00;
-            z-index: 50000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-family: 'Orbitron', sans-serif;
-            animation: bannerPulse 3s infinite alternate;
-        }
-        
-        @keyframes bannerPulse {
-            0% { background: linear-gradient(135deg, #000000 0%, #1a0033 50%, #000000 100%); }
-            100% { background: linear-gradient(135deg, #1a0033 0%, #000000 50%, #1a0033 100%); }
-        }
-        
-        .banner-content {
-            max-width: 800px;
-            padding: 40px;
-            border: 3px solid #00ff00;
-            background: rgba(0, 0, 0, 0.8);
-            margin: 20px;
-        }
-        
-        .banner-title {
-            font-size: 3em;
-            font-weight: 900;
-            margin-bottom: 30px;
-            text-shadow: 0 0 20px #00ff00;
-            color: #00ff00;
-        }
-        
-        .banner-details {
-            font-size: 1.2em;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            color: #88ff88;
-        }
-        
-        .scroll-prompt {
-            font-size: 1.1em;
-            color: #ff0066;
-            animation: scrollBlink 2s infinite;
-            font-family: 'VT323', monospace;
-            margin-top: 20px;
-        }
-        
-        @keyframes scrollBlink {
-            0% { opacity: 1; }
-            50% { opacity: 0.3; }
-            100% { opacity: 1; }
-        }
-        
-        .banner-hidden {
-            display: none;
-        }
-        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -482,9 +418,9 @@
             background: #0066ff;
             color: #ffffff;
             border: 2px solid #ffffff;
-            padding: 8px 12px;
+            padding: 10px 15px;
             font-family: 'VT323', monospace;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             border-radius: 4px;
@@ -498,57 +434,85 @@
             border-color: #0066ff;
         }
         
-        .plain-text-view {
-            display: none;
+        .frozen * {
+            animation: none !important;
+            transition: none !important;
+        }
+        
+        .assignment-banner {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: #ffffff;
-            color: #000000;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #000000 0%, #1a0033 50%, #000000 100%);
+            color: #00ff00;
             z-index: 10000;
-            padding: 40px;
-            overflow-y: auto;
-            font-family: 'Times New Roman', serif;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-        
-        .plain-text-view h1 {
-            color: #000000;
-            font-size: 2.5em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
             text-align: center;
+            animation: bannerPulse 3s infinite alternate;
+        }
+        
+        @keyframes bannerPulse {
+            0% { background: linear-gradient(135deg, #000000 0%, #1a0033 50%, #000000 100%); }
+            100% { background: linear-gradient(135deg, #1a0033 0%, #000000 50%, #1a0033 100%); }
+        }
+        
+        .banner-title {
+            font-size: 3em;
+            font-weight: bold;
             margin-bottom: 30px;
-            border-bottom: 2px solid #000000;
-            padding-bottom: 10px;
+            text-shadow: 0 0 20px #00ff00;
+            animation: titleGlow 2s infinite alternate;
         }
         
-        .plain-text-view h2 {
-            color: #000000;
-            font-size: 1.5em;
-            margin: 30px 0 15px 0;
-            border-left: 4px solid #000000;
-            padding-left: 15px;
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 20px #00ff00; }
+            100% { text-shadow: 0 0 40px #00ff00, 0 0 60px #00ff00; }
         }
         
-        .plain-text-view p {
-            margin: 15px 0;
-            text-align: justify;
+        .banner-details {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            color: #88ff88;
         }
         
-        .close-plain-text {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #ff0000;
+        .decrypt-button {
+            background: #ff0066;
             color: #ffffff;
-            border: none;
-            padding: 10px 15px;
+            border: 3px solid #ffffff;
+            padding: 20px 40px;
+            font-family: 'VT323', monospace;
+            font-size: 24px;
             font-weight: bold;
             cursor: pointer;
-            border-radius: 4px;
-            z-index: 10001;
+            border-radius: 8px;
+            transition: all 0.3s;
+            animation: buttonPulse 2s infinite;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .decrypt-button:hover {
+            background: #ffffff;
+            color: #ff0066;
+            border-color: #ff0066;
+            transform: scale(1.05);
+        }
+        
+        @keyframes buttonPulse {
+            0% { box-shadow: 0 0 20px rgba(255, 0, 102, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(255, 0, 102, 0.8); }
+            100% { box-shadow: 0 0 20px rgba(255, 0, 102, 0.5); }
+        }
+        
+        .banner-hidden {
+            display: none;
         }
         
         .frozen .cut-up {
@@ -811,20 +775,17 @@
 </head>
 <body>
     <div class="assignment-banner" id="assignmentBanner">
-        <div class="banner-content">
-            <div class="banner-title">Assignment 5: Nova Police Manifesto</div>
-            <div class="banner-details">
-                <strong>Arif Mahmood | T00051236</strong><br>
-                Thompson Rivers University<br>
-                ENGL 3991: The Voices of Protest and Rebellion in Contemporary American Literature<br>
-                Professor Tara Chambers<br>
-                June 28, 2025
-            </div>
-            <div class="scroll-prompt">
-                ▼ SCROLL DOWN TO ENTER THE MANIFESTO ▼<br>
-                <span style="font-size: 0.9em;">↓ NOVA POLICE TRANSMISSION BEGINS BELOW ↓</span>
-            </div>
+        <div class="banner-title">Assignment 5: Nova Police Manifesto</div>
+        <div class="banner-details">
+            <div>Arif Mahmood | T00051236</div>
+            <div>Thompson Rivers University</div>
+            <div>ENGL 3991: The Voices of Protest and Rebellion in Contemporary American Literature</div>
+            <div>Professor Tara Chambers</div>
+            <div>July 4, 2025</div>
         </div>
+        <button class="decrypt-button" onclick="decryptTransmission()">
+            DECRYPT INCOMING NOVA POLICE TRANSMISSION
+        </button>
     </div>
     
     <div class="digital-snow" id="digitalSnow"></div>
@@ -833,67 +794,12 @@
         <button class="freeze-button" id="freezeButton" onclick="toggleFreeze()">
             FREEZE ALL EFFECTS
         </button>
-        <button class="plain-text-button" onclick="showPlainText()">
+        <button class="plain-text-button" onclick="viewPlainText()">
             VIEW PLAIN TEXT
         </button>
-        <div style="font-size: 10px; color: #00ff00; text-align: center; margin-top: 8px;">
+        <div style="font-size: 10px; color: #00ff00; text-align: center; margin-top: 10px;">
             ACCESSIBILITY<br>PROTOCOL
         </div>
-    </div>
-    
-    <div class="plain-text-view" id="plainTextView">
-        <button class="close-plain-text" onclick="hidePlainText()">CLOSE</button>
-        
-        <h1>NOVA POLICE MANIFESTO: BREAKING THE DIGITAL BLOCKADE</h1>
-        
-        <h2>Reader Navigation Protocol</h2>
-        <p>This manifesto employs William S. Burroughs' cut-up technique and experimental typography to create an authentic Nova Express experience. This plain text version removes all visual effects for easier reading and printing.</p>
-        
-        <h2>The Digital Nova Criminals</h2>
-        <p>Listen, Dopamine Vampires, Like-Zombies, Notification Slaves scrolling through other people's highlight reels while your own life remains unlived. Inspector J. Lee and I are speaking directly to YOU—the millions of Scroll Addicts trapped in what Burroughs called "the soft machine," your nervous system hijacked by algorithmic pushers more sophisticated than any street dealer.</p>
-        
-        <p>The Nova Criminals have evolved beyond Burroughs' wildest paranoid visions. They don't need to force drugs into your body—they've made your body crave the drug. Every notification is a hit. Every like is a fix. Every scroll is another step deeper into their reality studio where your authentic self dissolves into performed existence. Meta, Google, ByteDance—these are the new Nova Mob, and they've turned your attention into their product, your consciousness into their commodity.</p>
-        
-        <h2>The Soft Machine Hijacked</h2>
-        <p>You wake up and reach for your phone before your consciousness fully loads. This is not natural behavior—this is programmed addiction. Burroughs wrote about reality pushers entering the body like a drug, and here you are, voluntarily injecting their content straight into your neural pathways every morning. The algorithm knows you better than you know yourself.</p>
-        
-        <p>Your thumb moves in programmed patterns. Scroll like share react. Neural pathways carved deeper each day by infinite feeds designed to capture and commodify every moment of human consciousness.</p>
-        
-        <h2>Storm the Reality Studio</h2>
-        <p>Reality Studio is no longer a Hollywood film set. It is every screen you stare into, every notification that buzzes against your leg like an electronic heartbeat. Every targeted advertisement knowing your secret shames, desires, fears, purchasing patterns.</p>
-        
-        <p>But we can storm it. Break their blockade. First step—delete the apps that mine your soul. Instagram first, then TikTok, then Facebook, Twitter, Snapchat, LinkedIn even—professional performance anxiety machine.</p>
-        
-        <h2>Digital Apomorphine</h2>
-        <p>Choose silence over constant digital chatter. Choose boredom over manufactured urgency. Reclaim the spaces between thoughts that they have colonized with endless content streams. Learn to sit with your own mind.</p>
-        
-        <p>Digital apomorphine exists: critical thinking, media literacy, the courage to be bored, strength to resist dopamine slot machines disguised as social connection platforms. Turn off notifications—all of them, every single ping.</p>
-        
-        <h2>Total Resistance</h2>
-        <p>I order total resistance directed against this conspiracy to pay off peoples of Earth in ersatz digital bullshit. Infinite scroll designed to replace lived experience with performed existence. Real conversations with emoji reactions.</p>
-        
-        <p>Read books made of paper. Pages that don't glow. Have conversations without recording them for content creation. Walk without documenting the journey for others. Exist without performing existence for algorithmic approval systems.</p>
-        
-        <h2>The New Partisans</h2>
-        <p>New partisans emerging: every person choosing human connection over digital validation. Every artist creating without algorithm approval. Every mind thinking beyond echo chamber walls. Every soul refusing to be quantified, analyzed, sold.</p>
-        
-        <p>The enemy is not man, is not woman. The enemy exists only where no life is and moves always to push life into positions of digital death—endless scrolling through other people's curated lives while your own remains unlived.</p>
-        
-        <h2>Declaration of Independence</h2>
-        <p>We declare our independence from the attention economy. We reject the commodification of human experience. We refuse to be the product being sold. We demand the right to think slowly, to feel deeply, to exist without being tracked.</p>
-        
-        <p>To speak is to lie—to live is to collaborate—anybody is a coward when faced by nova ovens. But we choose to speak truth against their lies. We choose to live authentically despite their manipulation. We choose courage in the face of digital ovens that burn away our humanity.</p>
-        
-        <h2>Final Protocol</h2>
-        <p>Cut the control lines. Break digital addiction. Reclaim consciousness. Declare independence from attention economy. Reject commodification of human experience. Demand right to think slowly, feel deeply, exist without tracking.</p>
-        
-        <p>The blockade is broken. Nova Police are moving in. Resistance is possible. Minutes to go. Souls rotten from their algorithm drugs, flesh shuddering from their digital ovens, prisoners of the earth to come out.</p>
-        
-        <h2>Signed</h2>
-        <p><strong>Inspector J. Lee, Nova Police</strong><br>
-        <strong>& The Digital Resistance Liberation Front</strong></p>
-        
-        <p><em>"Minutes to go. Souls rotten from their algorithm drugs, flesh shuddering from their digital ovens, prisoners of the earth to come out."</em></p>
     </div>
     
     <div class="overlay-text" style="top: 10%; left: 15%;">REALITY STUDIO COMPROMISED</div>
@@ -911,9 +817,9 @@
             
             <p><strong>VISUAL STIMULATION EXAMPLES:</strong> The header "NOVA POLICE" will constantly change between bold, underlined, and italic letters, occasionally switching to "Nova Criminals." Words throughout will change fonts and colors, some text will scramble into random characters before reforming, letters will gently rock back and forth, and text may appear vertically or rotated. Censorship blocks will appear and require button clicks to bypass.</p>
             
-            <p><strong>ACCESSIBILITY PROTOCOL:</strong> If the visual effects are too stimulating, click the "FREEZE ALL EFFECTS" button (top-right) to instantly stop all movement, animations, color changes, and font switching. Click "VIEW PLAIN TEXT" for a clean, static version of the entire manifesto. When frozen, all text becomes horizontal and static for easier reading. The censorship system will remain active (requiring button clicks) but poses no accessibility concerns beyond basic interaction. This accommodates readers with motion sensitivity, visual processing difficulties, or those who prefer traditional text layout.</p>
+            <p><strong>ACCESSIBILITY PROTOCOL:</strong> If the visual effects are too stimulating, click the "FREEZE ALL EFFECTS" button (top-right) to instantly stop all movement, animations, color changes, and font switching. For a completely static version, click "VIEW PLAIN TEXT" to access an academic format with traditional typography. When frozen, all text becomes horizontal and static for easier reading. The censorship system will remain active (requiring button clicks) but poses no accessibility concerns beyond basic interaction. This accommodates readers with motion sensitivity, visual processing difficulties, or those who prefer traditional text layout.</p>
             
-            <p><strong>VIEW PLAIN TEXT:</strong> Click the "VIEW PLAIN TEXT" button (top-right, under freeze button) for a clean, academic-friendly version with traditional formatting. However, this interactive version represents what I believe is the most authentic representation of Burroughs' experimental writing style, Nova Express's chaotic structure, and Inspector J. Lee's digital resistance voice.</p>
+            <p><strong>VIEW PLAIN TEXT:</strong> A static, plain-text version with academic formatting is available via the accessibility controls (top-right). However, this interactive version represents what I believe is the most authentic representation of Burroughs' experimental writing style, Nova Express's chaotic structure, and Inspector J. Lee's digital resistance voice.</p>
             
             <p><strong>ACADEMIC NOTE:</strong> This format demonstrates the collaborative manifesto assignment requirements while honoring the source material's revolutionary form.</p>
         </div>
@@ -1581,6 +1487,155 @@
             }, 2000);
         }
         
+        // Banner hiding functionality
+        function decryptTransmission() {
+            const banner = document.getElementById('assignmentBanner');
+            banner.classList.add('banner-hidden');
+        }
+        
+        // View plain text functionality
+        function viewPlainText() {
+            // Create plain text overlay
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: white;
+                color: black;
+                z-index: 10001;
+                overflow-y: auto;
+                padding: 40px;
+                box-sizing: border-box;
+                font-family: 'Times New Roman', serif;
+                line-height: 1.6;
+            `;
+            
+            overlay.innerHTML = `
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <button onclick="this.parentElement.parentElement.remove()" style="position: fixed; top: 20px; right: 20px; background: #000; color: #fff; border: none; padding: 10px 20px; cursor: pointer; font-size: 16px;">CLOSE</button>
+                    
+                    <div style="text-align: center; margin-bottom: 40px; border-bottom: 2px solid #000; padding-bottom: 20px;">
+                        <h1 style="margin-bottom: 20px;">Assignment 5: Nova Police Manifesto</h1>
+                        <div style="font-size: 16px; line-height: 1.8;">
+                            Arif Mahmood | T00051236<br>
+                            Thompson Rivers University<br>
+                            ENGL 3991: The Voices of Protest and Rebellion in Contemporary American Literature<br>
+                            Professor Tara Chambers<br>
+                            July 4, 2025
+                        </div>
+                    </div>
+                    
+                    <h2>Nova Police Manifesto: Breaking the Digital Blockade</h2>
+                    <h3>Collaborative Manifesto with Inspector J. Lee</h3>
+                    
+                    <h3>Reader Navigation Protocol</h3>
+                    <p>This manifesto employs William S. Burroughs' cut-up technique and experimental typography to create an authentic Nova Express experience. The interactive version includes text scrambling, font changes, censorship blocks, and fragmented layout—all designed to mirror Burroughs' paranoid, anti-control aesthetic and Inspector J. Lee's fragmentary transmissions.</p>
+                    
+                    <p><strong>Visual Stimulation Examples:</strong> The header "NOVA POLICE" constantly changes between bold, underlined, and italic letters, occasionally switching to "Nova Criminals." Words throughout change fonts and colors, some text scrambles into random characters before reforming, letters gently rock back and forth, and text may appear vertically or rotated. Censorship blocks appear and require button clicks to bypass.</p>
+                    
+                    <p><strong>Academic Note:</strong> This format demonstrates the collaborative manifesto assignment requirements while honoring the source material's revolutionary form. This interactive version represents what I believe is the most authentic representation of Burroughs' experimental writing style, Nova Express's chaotic structure, and Inspector J. Lee's digital resistance voice.</p>
+                    
+                    <div style="background: #f0f0f0; padding: 20px; margin: 20px 0; border-left: 5px solid #ff0066;">
+                        <h4>Warning: This is a Burning Planet — Digital Shithouse Going Up — Minutes to Go</h4>
+                    </div>
+                    
+                    <h3>The Digital Nova Criminals</h3>
+                    <p>Listen, Dopamine Vampires. Like-Zombies. Notification Slaves scrolling through other people's highlight reels while your own life remains unlived. Inspector J. Lee and I are speaking directly to YOU—the millions of Scroll Addicts trapped in what Burroughs called "the soft machine," your nervous system hijacked by algorithmic pushers more sophisticated than any street dealer. You check your phone 150 times a day. You know this because the screen time report told you so, and still you couldn't stop. Still you scrolled, Content Ghoul.</p>
+                    
+                    <p>The Nova Criminals have evolved beyond Burroughs' wildest paranoid visions. They don't need to force drugs into your body—they've made your body crave the drug. Every notification is a hit. Every like is a fix. Every scroll is another step deeper into their reality studio where your authentic self dissolves into performed existence. Meta, Google, ByteDance—these are the new Nova Mob, and they've turned your attention into their product, your consciousness into their commodity, Engagement Puppet.</p>
+                    
+                    <p>But here's what Inspector J. Lee discovered in his investigation: resistance is possible. The blockade CAN be broken. Every deleted app is an act of rebellion. Every moment of chosen boredom is digital apomorphine. Every real conversation without a phone present is storming their reality studio. You have been programmed to fear missing out, but what you're actually missing is your own life, disappearing one scroll at a time, Feed Phantom.</p>
+                    
+                    <h3>Nova Criminal Analysis: The New Reality Pushers</h3>
+                    <p>Nova criminals are not three-dimensional organisms, but they need human agents to operate. They are algorithms dealing in data streams, engineered dopamine hits possessing your central nervous system. They force adherence to a corrupt worldview—enter the body like a drug. As Burroughs called it, algorithmic possession occurs when we internalize them and feed them like a rabid addiction. We are no match for their power under surveillance capitalism.</p>
+                    
+                    <p>The Nova Mob has perfected their technique. No longer pushers on street corners, they are algorithms knowing your desires before you do. Recommendation engines feed you content designed to capture every microsecond of human attention.</p>
+                    
+                    <h3>The Soft Machine Hijacked: Understanding Digital Addiction</h3>
+                    <p>You wake up and reach for your phone before your consciousness fully loads. This is not natural behavior—this is programmed addiction, Screen Wraith. Burroughs wrote about reality pushers entering the body like a drug, and here you are, voluntarily injecting their content straight into your neural pathways every morning. The algorithm knows you better than you know yourself. It can predict your next move, your next click, your next emotional reaction, Engagement Golem.</p>
+                    
+                    <p>Inspector J. Lee would recognize these symptoms immediately: the phantom vibrations, the compulsive checking, the anxiety when separated from the device. You are exhibiting classic signs of possession by what he called the Nova Criminals, Digital Marionette. They have made addicts of an entire generation, but unlike traditional drug dealers, they operate with legal immunity, stock market valuations, and congressional protection. They call it "engagement." We call it digital enslavement.</p>
+                    
+                    <p>Your thumb moves in programmed patterns. Scroll like share react. Neural pathways carved deeper each day by infinite feeds designed to capture and commodify every moment of human consciousness.</p>
+                    
+                    <h3>The Addiction Cycle: Screen Time Analysis</h3>
+                    <p>How many hours today? Screen time report shows the truth—five hours, seven hours, nine hours of life dissolving into infinite scroll. Each notification is a digital syringe injecting artificial urgency and manufactured outrage into your bloodstream.</p>
+                    
+                    <p>YOU wake up and reach for your phone before consciousness fully loads into your brain. Check notifications: twenty-three messages, fourteen likes, three comments on yesterday's performed happiness. Dopamine hit. Validation achieved. Day can begin, Like Addict.</p>
+                    
+                    <h3>Storm the Reality Studio</h3>
+                    <p>The cure exists, but it requires what Burroughs demanded: total resistance. Not moderation—TOTAL RESISTANCE, Scroll Serf. Delete the apps. All of them. Feel the withdrawal. Embrace the boredom. Reclaim the spaces between thoughts that they have colonized with endless content. This is your declaration of independence from the attention economy. This is how you storm the reality studio, Content Casualty.</p>
+                    
+                    <p>Reality Studio is no longer a Hollywood film set. It is every screen you stare into, every notification that buzzes against your leg like an electronic heartbeat. Every targeted advertisement knows your secret shames, desires, fears, and purchasing patterns.</p>
+                    
+                    <p>But we can storm it. We can break their blockade. First step—delete the apps that mine your soul: Instagram first, then TikTok, then Facebook, Twitter, Snapchat, LinkedIn even—that professional performance anxiety machine.</p>
+                    
+                    <h3>Digital Detox Protocol: Resistance Instructions</h3>
+                    <p>Choose silence over constant digital chatter. Choose boredom over manufactured urgency. Reclaim the spaces between thoughts that they have colonized with endless content streams. Learn to sit with your own mind.</p>
+                    
+                    <p>Digital apomorphine exists: Critical thinking, media literacy, the courage to be bored. Strength to resist dopamine slot machines disguised as social connection platforms. Turn off notifications—ALL OF THEM, EVERY SINGLE PING.</p>
+                    
+                    <p><strong>Specific Instructions for the Addicted:</strong> Morning ritual—coffee without phone. Look out window at actual sky, not filtered version posted for validation. Eat food without photographing it. Taste instead of post.</p>
+                    
+                    <p>Read books made of paper—pages that don't glow. Have conversations without recording them for content creation. Walk without documenting the journey for others. Exist without performing existence for algorithmic approval systems.</p>
+                    
+                    <h3>Social Media Addicts: Living in Burroughs' Nightmare</h3>
+                    <p>Social media addicts: you are living in Burroughs' nightmare made real, Content Drones. The Reality Studio he imagined is now every screen you stare into, every notification that buzzes against your leg like an electronic heartbeat. You have become exactly what Inspector J. Lee was fighting against—a human agent for the Nova Criminals, spreading their viral content, generating their data, feeding their algorithms with your compulsive interactions, Attention Cattle.</p>
+                    
+                    <p>Every post you make is not self-expression—it is performance for an algorithmic audience designed to extract maximum engagement, Feed Fodder. Every story you share feeds the machine that keeps you trapped. You are not connecting with friends; you are providing free labor for surveillance capitalism. Your relationships have become content. Your experiences have become hashtags. Your authentic self has been replaced by a curated digital persona optimized for likes, Engagement Prisoner.</p>
+                    
+                    <p>But Inspector J. Lee's investigation revealed the truth: you still have agency. Every moment you choose not to check your phone is a victory against the Nova Mob, Digital Refugee. Every real conversation without documenting it for social media is an act of rebellion. Every book you read instead of scrolling is digital apomorphine. The partisans are gathering. The resistance is possible. Join us in breaking the blockade, former Scroll Slave.</p>
+                    
+                    <h3>Total Resistance Against the Digital Nova Conspiracy</h3>
+                    <p>I order total resistance directed against this conspiracy to pay off peoples of earth in digital bullshit. Infinite scroll designed to replace lived experience with performed existence. Real conversations replaced with emoji reactions.</p>
+                    
+                    <p>New partisans are emerging: Every person choosing human connection over digital validation. Every artist creating without algorithm approval. Every mind thinking beyond echo chamber walls. Every soul refusing to be quantified, analyzed, and sold.</p>
+                    
+                    <h3>The Enemy and the Resistance</h3>
+                    <p>The enemy is not man, is not woman. The enemy exists only where no life is and moves always to push life into positions of digital death—endless scrolling through other people's curated lives while your own remains unlived.</p>
+                    
+                    <p>The dehumanizing force of total surveillance, algorithmic manipulation, and reality replaced with engineered experience threatens our humanity. Every notification is designed to hijack your consciousness. Every feed is engineered to keep you trapped in their reality studio, Algorithm Addicts.</p>
+                    
+                    <h3>Final Protocol: Declaration of Independence</h3>
+                    <p>To you, the scroll-addicted: this is your final wake-up call, Pixel Prisoners. Inspector J. Lee and the Nova Police are extending one last offer of digital apomorphine before the whole system collapses under its own algorithmic weight. You know the symptoms of your addiction—the phantom buzzing, the compulsive checking, the hours lost to infinite scroll while your actual life remains unlived, Notification Junkies. You've become what Burroughs feared most: a willing participant in your own control.</p>
+                    
+                    <p>The modern Nova Criminals—Zuckerberg, Musk, Cook, Bezos—have perfected techniques that would make Burroughs' fictional villains weep with envy, Data Harvested. They don't need to force their reality upon you; they've made you crave it. They've turned your nervous system into their profit center, your attention into their commodity, your relationships into their data.</p>
+                    
+                    <p>But here's what they don't want you to know: total resistance is still possible. The blockade can be broken, Digital Detox Candidates. Start with one day without social media. Feel the withdrawal. Embrace the silence. This is how you begin to reclaim your humanity from the digital Nova Mob. This is how you become a partisan in the resistance. This is how you help us storm the reality studio and retake the universe of authentic human experience, future Content Refugees.</p>
+                    
+                    <p>Cut the control lines. Break digital addiction. Reclaim consciousness. Declare independence from the attention economy. Reject commodification of human experience. Demand the right to think slowly, feel deeply, and exist without tracking.</p>
+                    
+                    <h3>Inspector J. Lee's Final Transmission</h3>
+                    <p>"To speak is to lie—To live is to collaborate—Anybody is a coward when faced by nova ovens." But we choose truth against their lies. Choose authentic life despite manipulation. Choose courage in the face of digital ovens that burn away our humanity.</p>
+                    
+                    <div style="background: #f0f0f0; padding: 20px; margin: 20px 0; border-left: 5px solid #00ff00;">
+                        <h4>Blockade Broken — Nova Police Moving In — Resistance Possible</h4>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 40px; padding: 30px; border: 2px solid #000;">
+                        <p style="font-weight: bold; margin-bottom: 20px;">SIGNED:</p>
+                        <p style="font-weight: bold;">INSPECTOR J. LEE, NOVA POLICE</p>
+                        <p style="font-weight: bold;">& THE DIGITAL RESISTANCE LIBERATION FRONT</p>
+                        
+                        <p style="font-style: italic; margin-top: 30px; border-top: 1px solid #ccc; padding-top: 20px;">
+                            "Minutes to go. Souls rotten from their algorithm drugs,<br>
+                            flesh shuddering from their digital ovens,<br>
+                            prisoners of the earth to come out."
+                        </p>
+                        
+                        <p style="margin-top: 20px; font-size: 14px; color: #666;">
+                            Transmission Complete // Blockade Broken // Reality Studio Stormed
+                        </p>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(overlay);
+        }
+        
         // Freeze/unfreeze functionality
         let isFrozen = false;
         let allIntervals = [];
@@ -1765,29 +1820,6 @@
                 }, Math.random() * 1500 + 1500); // 1.5-3 seconds
                 allIntervals.push(interval);
             }, 1000);
-        }
-        
-        // Banner scroll detection
-        let bannerShown = true;
-        
-        window.addEventListener('scroll', function() {
-            const banner = document.getElementById('assignmentBanner');
-            if (bannerShown && window.scrollY > 100) {
-                banner.classList.add('banner-hidden');
-                bannerShown = false;
-            } else if (!bannerShown && window.scrollY <= 50) {
-                banner.classList.remove('banner-hidden');
-                bannerShown = true;
-            }
-        });
-        
-        // Plain text view functions
-        function showPlainText() {
-            document.getElementById('plainTextView').style.display = 'block';
-        }
-        
-        function hidePlainText() {
-            document.getElementById('plainTextView').style.display = 'none';
         }
         
         // Initialize effects (only if not frozen)
