@@ -38,8 +38,7 @@
         }
         
         .cut-up {
-            writing-mode: vertical-lr;
-            text-orientation: mixed;
+            transform: rotate(45deg);
             display: inline-block;
             vertical-align: top;
             margin: 0 10px;
@@ -53,9 +52,9 @@
         
         .scrambled {
             letter-spacing: 0.1em;
-            transform: skew(-1deg);
+            transform: skew(0deg);
             display: inline-block;
-            animation: scramble 2s infinite;
+            animation: scramble 10s infinite;
         }
         
         @keyframes scramble {
@@ -781,7 +780,7 @@
             <div>Thompson Rivers University</div>
             <div>ENGL 3991: The Voices of Protest and Rebellion in Contemporary American Literature</div>
             <div>Professor Tara Chambers</div>
-            <div>June 31, 2025</div>
+            <div>June 32, 2025</div>
         </div>
         <button class="decrypt-button" onclick="decryptTransmission()">
             DECRYPT INCOMING NOVA POLICE TRANSMISSION
