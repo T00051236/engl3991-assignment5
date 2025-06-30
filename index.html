@@ -427,11 +427,23 @@
             width: 100%;
         }
         
-        .plain-text-button:hover {
+       .plain-text-button:hover {
             background: #ffffff;
             color: #0066ff;
             border-color: #0066ff;
         }
+        
+        /* Mobile-specific optimizations */
+        @media (max-width: 768px) {
+            .accessibility-controls {
+                position: fixed !important;
+                top: 10px;
+                right: 10px;
+                z-index: 10001;
+                max-width: 200px;
+                padding: 12px;
+            }
+            
         
         .frozen * {
             animation: none !important;
