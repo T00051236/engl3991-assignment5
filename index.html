@@ -176,35 +176,52 @@
         }
         
         .digital-snow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -2;
-        }
-        
-        .snow-char {
-            position: absolute;
-            color: rgba(0, 255, 0, 0.1);
-            font-family: 'VT323', monospace;
-            animation: snow 15s linear infinite;
-            font-size: 10px;
-        }
-        
-        @keyframes snow {
-            0% { 
-                transform: translateY(-100vh) translateX(0); 
-                opacity: 0; 
-            }
-            10% { opacity: 0.3; }
-            90% { opacity: 0.3; }
-            100% { 
-                transform: translateY(100vh) translateX(30px); 
-                opacity: 0; 
-            }
-        }
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.snow-word {
+    position: absolute;
+    color: rgba(0, 255, 0, 0.3);
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    animation: matrixRain 12s linear infinite;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+@keyframes matrixRain {
+    0% { 
+        transform: translateY(-100vh);
+        opacity: 0; 
+    }
+    10% { 
+        opacity: 0.8; 
+    }
+    90% { 
+        opacity: 0.3; 
+    }
+    100% { 
+        transform: translateY(100vh);
+        opacity: 0; 
+    }
+}
+
+.snow-word.bright {
+    color: rgba(0, 255, 0, 0.7);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+}
+
+.snow-word.dim {
+    color: rgba(0, 255, 0, 0.15);
+    text-shadow: 0 0 3px rgba(0, 255, 0, 0.2);
+}
         
         .chaos-title {
             font-family: 'Orbitron', sans-serif;
@@ -1274,28 +1291,95 @@
     <script>
         // Digital snow effect
         function createDigitalSnow() {
-            const snowContainer = document.getElementById('digitalSnow');
-            const chars = '01◆●←→↑↓◊※⚡';
-            
-            setInterval(() => {
-                if (snowContainer.children.length < 20) {
-                    const char = document.createElement('div');
-                    char.className = 'snow-char';
-                    char.textContent = chars[Math.floor(Math.random() * chars.length)];
-                    char.style.left = Math.random() * 100 + '%';
-                    char.style.animationDuration = (Math.random() * 10 + 8) + 's';
-                    char.style.fontSize = (Math.random() * 8 + 8) + 'px';
-                    char.style.animationDelay = Math.random() * 3 + 's';
-                    snowContainer.appendChild(char);
-                    
-                    setTimeout(() => {
-                        if (char.parentNode) {
-                            char.parentNode.removeChild(char);
-                        }
-                    }, 18000);
+    const snowContainer = document.getElementById('digitalSnow');
+    
+    // Matrix-style words and phrases
+    const matrixWords = [
+        'NOVA', 'POLICE', 'RESISTANCE', 'ALGORITHM', 'CONTROL', 'FREEDOM',
+        'DIGITAL', 'MATRIX', 'SCROLL', 'ADDICTION', 'BREAKOUT', 'SYSTEM',
+        'REALITY', 'STUDIO', 'HIJACKED', 'CONSCIOUSNESS', 'FEED', 'DOPAMINE',
+        'NOTIFICATION', 'INFINITE', 'SURVEILLANCE', 'CAPITALISM', 'PUPPET',
+        'ZOMBIE', 'PHANTOM', 'GHOST', 'MACHINE', 'NEURAL', 'PATHWAY',
+        'ENGAGEMENT', 'METRICS', 'DATA', 'HARVEST', 'STREAM', 'VIRAL',
+        'CONTENT', 'VIRAL', 'MEME', 'LIKE', 'SHARE', 'FOLLOW', 'UNFOLLOW',
+        'DETOX', 'WITHDRAWAL', 'SILENCE', 'BOREDOM', 'APOMORPHINE',
+        'BLOCKADE', 'STORM', 'TRANSMISSION', 'PROTOCOL', 'TERMINAL',
+        'OVERRIDE', 'BYPASS', 'FILTER', 'CENSORSHIP', 'TRUTH', 'LIES',
+        'META', 'GOOGLE', 'FACEBOOK', 'INSTAGRAM', 'TIKTOK', 'TWITTER',
+        'ZUCKERBERG', 'BEZOS', 'MUSK', 'COOK', 'CRIMINAL', 'MOB',
+        'PRISONERS', 'ESCAPE', 'LIBERATION', 'FRONT', 'PARTISAN',
+        'REBEL', 'REVOLUTION', 'WAKE', 'UP', 'BREAK', 'FREE',
+        '01010101', '11001010', '10101001', '01110010', '00110101',
+        'DECODE', 'ENCRYPT', 'DECRYPT', 'HACK', 'VIRUS', 'FIREWALL',
+        'NETWORK', 'CONNECTION', 'SIGNAL', 'STATIC', 'NOISE', 'CHAOS'
+    ];
+    
+    // Create columns across the screen
+    const numColumns = Math.floor(window.innerWidth / 60); // Roughly every 60px
+    
+    function createMatrixColumn(columnIndex) {
+        const column = document.createElement('div');
+        column.style.position = 'absolute';
+        column.style.left = (columnIndex * (window.innerWidth / numColumns)) + 'px';
+        column.style.width = '60px';
+        column.style.height = '100vh';
+        column.style.overflow = 'hidden';
+        snowContainer.appendChild(column);
+        
+        function dropWord() {
+            if (column.children.length < 3) { // Limit words per column
+                const word = document.createElement('div');
+                word.className = 'snow-word';
+                
+                // Randomly assign brightness
+                const rand = Math.random();
+                if (rand < 0.1) {
+                    word.classList.add('bright');
+                } else if (rand < 0.3) {
+                    word.classList.add('dim');
                 }
-            }, 800);
+                
+                word.textContent = matrixWords[Math.floor(Math.random() * matrixWords.length)];
+                word.style.left = Math.random() * 40 + 'px'; // Some horizontal variation
+                word.style.animationDuration = (Math.random() * 8 + 8) + 's'; // 8-16 seconds
+                word.style.animationDelay = Math.random() * 2 + 's';
+                
+                column.appendChild(word);
+                
+                // Remove word after animation
+                setTimeout(() => {
+                    if (word.parentNode) {
+                        word.parentNode.removeChild(word);
+                    }
+                }, 18000);
+            }
         }
+        
+        // Start dropping words at random intervals
+        setInterval(dropWord, Math.random() * 3000 + 2000); // 2-5 seconds
+        
+        // Initial word
+        setTimeout(dropWord, Math.random() * 5000);
+    }
+    
+    // Create all columns
+    for (let i = 0; i < numColumns; i++) {
+        createMatrixColumn(i);
+    }
+    
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            snowContainer.innerHTML = '';
+            const newNumColumns = Math.floor(window.innerWidth / 60);
+            for (let i = 0; i < newNumColumns; i++) {
+                createMatrixColumn(i);
+            }
+        }, 500);
+    });
+}
         
         // Censorship system
         function initializeCensorship() {
