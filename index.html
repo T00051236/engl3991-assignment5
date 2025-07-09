@@ -1646,7 +1646,7 @@ function initializeArtistButton() {
             artistButton.textContent = "     ARTIST'S RESPONSE     ";
         }
         isOriginalText = !isOriginalText;
-    }, 2000);
+    }, 5000);
 }
 
 //  Response page function
@@ -2043,6 +2043,9 @@ function openArtistResponse() {
             addHeaderCycling();
             initializeCensorship();
         }
+        document.addEventListener('DOMContentLoaded', function() {
+    initializeArtistButton();
+});
     </script>
 </body>
 </html>
