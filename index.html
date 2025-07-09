@@ -882,7 +882,7 @@
         VIEW PLAIN TEXT
     </button>
     <button class="artist-response-button" id="artistButton" onclick="openArtistResponse()">
-         RESPONSE
+         ARTIST'S RESPONSE
     </button>
 </div>
     
@@ -1643,10 +1643,10 @@ function initializeArtistButton() {
         if (isOriginalText) {
             artistButton.textContent = "COLLABORATOR'S CONFESSION";
         } else {
-            artistButton.textContent = " RESPONSE";
+            artistButton.textContent = "ARTIST'S RESPONSE";
         }
         isOriginalText = !isOriginalText;
-    }, 5000);
+    }, 2000);
 }
 
 //  Response page function
